@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 9% 91%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 98%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 220 9% 91%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 330 81% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 239 84% 67%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-brand-gray text-brand-text antialiased;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Neo-brutalist button styles */
+  .neo-btn {
+    @apply relative font-bold border-[3px] border-black transition-all duration-100;
+    box-shadow: 4px 4px 0 0 #000;
+  }
+  
+  .neo-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 0 #000;
+  }
+  
+  .neo-btn-primary {
+    @apply neo-btn bg-brand-purple text-white;
+  }
+  
+  .neo-btn-primary:hover {
+    @apply bg-brand-violet;
+  }
+  
+  .neo-btn-secondary {
+    @apply neo-btn bg-white text-black;
+  }
+  
+  .neo-btn-secondary:hover {
+    @apply bg-brand-gray;
+  }
+  
+  /* Neo-brutalist card */
+  .neo-card {
+    @apply bg-white border-[3px] border-black rounded-2xl;
+    box-shadow: 6px 6px 0 0 #000;
+  }
+  
+  /* Skill chips */
+  .skill-chip {
+    @apply px-3 py-1.5 rounded-full text-xs font-semibold border-2 border-black;
+    background-color: #EDE9FE;
+    color: #5B21B6;
+    box-shadow: 2px 2px 0 0 #000;
+  }
+  
+  /* Looking for chips */
+  .looking-chip {
+    @apply px-3 py-1.5 rounded-full text-xs font-semibold border-2 border-black;
+    background-color: #FCE7F3;
+    color: #BE185D;
+    box-shadow: 2px 2px 0 0 #000;
+  }
+  
+  /* Hatched pattern */
+  .hatched-bg {
+    background: repeating-linear-gradient(
+      45deg,
+      #F9A8D4,
+      #F9A8D4 8px,
+      #F472B6 8px,
+      #F472B6 16px
+    );
+    border: 3px solid #000;
+  }
+  
+  /* Glass morphism */
+  .glass {
+    @apply backdrop-blur-md bg-white/80;
+  }
+  
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
+  }
+  
+  /* Section container */
+  .section-container {
+    @apply w-full px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+  
+  /* Grain overlay */
+  .grain-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Perspective for 3D transforms */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  /* Will change for performance */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  /* Line clamp */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
