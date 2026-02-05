@@ -1,0 +1,176 @@
+/* App-specific styles */
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes pulse-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Animation utilities */
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-pulse-scale {
+  animation: pulse-scale 4s ease-in-out infinite;
+}
+
+/* Display typography */
+.display-hero {
+  font-size: clamp(3.5rem, 14vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.display-section {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Tilt card */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Phone frame */
+.phone-frame {
+  box-shadow: 16px 16px 0 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Neo button */
+.neo-btn {
+  box-shadow: 4px 4px 0 0 #000;
+  transition: all 0.2s ease;
+}
+
+.neo-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 #000;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 #000;
+}
+
+.neo-btn-primary {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+}
+
+/* Geometric accent */
+.geo-accent {
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  box-shadow: 2px 2px 0 0 #000;
+}
+
+/* Skill tag */
+.skill-tag {
+  background: #EDE9FE;
+  color: #5B21B6;
+  box-shadow: 2px 2px 0 0 #000;
+}
+
+/* Hatched pattern */
+.hatched {
+  background: repeating-linear-gradient(
+    45deg,
+    #F9A8D4,
+    #F9A8D4 8px,
+    #F472B6 8px,
+    #F472B6 16px
+  );
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDE9FE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8B5CF6;
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: #F9A8D4;
+  color: #000;
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 2px solid #6366F1;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .phone-frame {
+    box-shadow: 10px 10px 0 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .tilt-card {
+    transform: none !important;
+  }
+}
