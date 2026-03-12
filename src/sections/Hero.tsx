@@ -160,7 +160,7 @@ const Hero = () => {
       {/* Decorative shapes */}
       <div
         ref={decor1Ref}
-        className="absolute top-20 right-[10%] w-16 h-16 border-[3px] border-black bg-brand-violet rotate-12 pointer-events-none z-10"
+        className="absolute top-40 right-[-10] w-16 h-16 border-[3px] border-black bg-brand-violet rotate-12 pointer-events-none z-10"
         style={{ boxShadow: '4px 4px 0 0 #000' }}
       ></div>
       <div
@@ -183,9 +183,9 @@ const Hero = () => {
               className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 overflow-hidden"
             >
               <span className="word inline-block">Find</span>{' '}
-              <span className="word inline-block">Your</span>{' '}
-              <span className="word inline-block">Next</span>{' '}
-              <span className="word inline-block text-gradient">Cofounder</span>
+              <span className="word inline-block">People</span>{' '}
+              <span className="word inline-block">To</span>{' '}
+              <span className="word inline-block text-gradient">Collaborate With</span>
             </h1>
 
             <p
@@ -204,7 +204,7 @@ const Hero = () => {
             </button>
 
             {/* Stats */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-8 mt-12">
+            {/* <div className="flex flex-wrap justify-center lg:justify-start gap-8 mt-12">
               {[
                 { value: '10K+', label: 'Developers' },
                 { value: '5K+', label: 'Matches Made' },
@@ -215,7 +215,7 @@ const Hero = () => {
                   <div className="text-sm font-semibold text-brand-muted">{stat.label}</div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Phone Mockup */}

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -58,13 +59,14 @@ const Navigation = () => {
     >
       <div className="flex items-center justify-between">
         {/* Logo */}
-        <button
-          onClick={() => scrollToSection('hero')}
-          className="text-xl font-extrabold tracking-tight hover:text-brand-purple transition-colors"
-        >
-          Collab
+        <Link
+          to="/"
+          className="text-xl font-extrabold flex items-center tracking-tight hover:text-brand-purple transition-colors"
+        > 
+          <img src="./assets/logo_noBg.png" alt="Troupe Logo" className="w-10 h-10 mr-2" />
+          Troupe
           <span className="inline-block w-2 h-2 bg-brand-pink rounded-full ml-1 align-top"></span>
-        </button>
+        </Link>
 
         {/* Links */}
         <div className="hidden md:flex items-center gap-6">

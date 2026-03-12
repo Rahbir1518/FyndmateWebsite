@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 const features = [
   {
     title: 'Smart Matching',
-    description: 'Our AI-powered algorithm pairs you with collaborators based on skills, interests, and project goals.',
+    description: 'Our algorithm pairs you with collaborators based on skills, interests, and project goals.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-8 h-8">
         <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -180,7 +180,7 @@ const Features = () => {
             style={{ boxShadow: '3px 3px 0 0 #000' }}
           >
             <div className="w-3 h-3 rounded-full bg-brand-pink border-2 border-black"></div>
-            <span className="text-sm font-bold">Why Collab?</span>
+            <span className="text-sm font-bold">Why Troupe?</span>
           </div>
           <h2 className="animate-item text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
             Built for <span className="text-gradient">Builders</span>

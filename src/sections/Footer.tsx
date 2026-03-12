@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -54,7 +55,7 @@ const Footer = () => {
               onClick={() => scrollToSection('hero')}
               className="text-3xl font-extrabold tracking-tight mb-4 hover:text-brand-purple transition-colors"
             >
-              Collab
+              Troupe
               <span className="inline-block w-3 h-3 bg-brand-pink rounded-full ml-1 align-top"></span>
             </button>
             <p className="text-gray-400 font-medium max-w-sm mb-6">
@@ -134,15 +135,15 @@ const Footer = () => {
         <div className="border-t border-white/10 mt-12 pt-8 max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              &copy; 2024 Collab. All rights reserved.
+              &copy; 2026 Troupe. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </a>
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
+              <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>
