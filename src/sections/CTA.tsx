@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -9,6 +9,13 @@ const CTA = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const shapesRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const successMessageRef = useRef<HTMLDivElement>(null);
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -77,6 +84,61 @@ const CTA = () => {
 
     return () => ctx.revert();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const formData = new FormData(formRef.current!);
+      const API_URL = import.meta.env.VITE_WAITLIST_API_URL;
+      
+      if (API_URL === 'your_google_apps_script_url_here') {
+        console.warn('Please set VITE_WAITLIST_API_URL in .env file');
+      }
+      
+      await fetch(API_URL, {
+        method: "POST",
+        body: formData,
+        mode: "no-cors"
+      });
+
+      setName('');
+      setEmail('');
+      setStatus('success');
+
+      if (successMessageRef.current) {
+        gsap.fromTo(
+          successMessageRef.current,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 0.4, ease: 'back.out' }
+        );
+      }
+
+      // Reset form to idle state after 3 seconds to allow next person to join
+      setTimeout(() => {
+        setStatus('idle');
+        if (successMessageRef.current) {
+          gsap.to(successMessageRef.current, {
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.3,
+            ease: 'power2.in'
+          });
+        }
+      }, 3000);
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage('Something went wrong. Please try again.');
+      
+      // Reset error state after 3 seconds
+      setTimeout(() => {
+        setStatus('idle');
+        setErrorMessage('');
+      }, 3000);
+    }
+  };
 
   return (
     <section
@@ -170,44 +232,86 @@ const CTA = () => {
             Join developers finding their perfect match and building the future together.
           </p>
 
-          <button
-            ref={buttonRef}
-            className="animate-item neo-btn-primary px-10 py-5 rounded-full text-xl"
-            style={{ boxShadow: '6px 6px 0 0 #000' }}
+          {/* Waitlist Form */}
+          <form
+            ref={formRef}
+            id="waitlist-form"
+            onSubmit={handleSubmit}
+            className="max-w-md mx-auto space-y-4"
           >
-            Join the Waitlist
-          </button>
+            <div className="animate-item space-y-2">
+              <label htmlFor="name" className="sr-only">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your name"
+                required
+                disabled={status === 'submitting'}
+                className="w-full px-5 py-4 rounded-xl border-[3px] border-white/30 bg-white/10 backdrop-blur-sm text-white font-semibold placeholder:text-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent shadow-neo-sm hover:shadow-neo-lg hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              />
+            </div>
 
-          {/* <button
-            ref={buttonRef}
-            className="animate-item neo-btn-primary px-10 py-5 rounded-full text-xl"
-            style={{ boxShadow: '6px 6px 0 0 #000' }}
-          >
-            Download the App
-          </button> */}
+            <div className="animate-item space-y-2">
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                required
+                disabled={status === 'submitting'}
+                className="w-full px-5 py-4 rounded-xl border-[3px] border-white/30 bg-white/10 backdrop-blur-sm text-white font-semibold placeholder:text-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-transparent shadow-neo-sm hover:shadow-neo-lg hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed"
+              />
+            </div>
 
-          {/* App store badges */}
-          {/* <div className="animate-item flex flex-wrap justify-center gap-4 mt-10">
-            <div className="flex items-center gap-3 px-5 py-3 bg-white/10 border-2 border-white/30 rounded-xl hover:bg-white/20 transition-colors cursor-pointer">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              <div className="text-left">
-                <div className="text-xs text-gray-400">Download on the</div>
-                <div className="text-sm font-bold text-white">App Store</div>
+            <button
+              ref={buttonRef}
+              type="submit"
+              disabled={status === 'submitting'}
+              className="animate-item neo-btn-primary px-10 py-5 rounded-full text-xl w-full disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              style={{ boxShadow: '6px 6px 0 0 #000' }}
+            >
+              {status === 'submitting' ? (
+                <>
+                  <svg className="animate-spin h-6 w-6 text-white" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Joining...
+                </>
+              ) : (
+                'Join the Waitlist'
+              )}
+            </button>
+
+            {/* Success Message */}
+            <div
+              ref={successMessageRef}
+              id="success-message"
+              className="hidden"
+              style={{ display: status === 'success' ? 'block' : 'none' }}
+            >
+              <div className="text-center px-4 py-3 bg-green-50 border-[3px] border-green-600 rounded-xl text-green-700 font-bold shadow-neo-sm animate-slide-up">
+                You're on the waitlist! 🎉
               </div>
             </div>
 
-            <div className="flex items-center gap-3 px-5 py-3 bg-white/10 border-2 border-white/30 rounded-xl hover:bg-white/20 transition-colors cursor-pointer">
-              <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-white">
-                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-              </svg>
-              <div className="text-left">
-                <div className="text-xs text-gray-400">Get it on</div>
-                <div className="text-sm font-bold text-white">Google Play</div>
+            {/* Error Message */}
+            {status === 'error' && errorMessage && (
+              <div className="text-center px-4 py-3 bg-red-50 border-[3px] border-red-600 rounded-xl text-red-700 font-bold shadow-neo-sm animate-slide-up">
+                {errorMessage}
               </div>
-            </div> 
-          </div> */}
+            )}
+          </form>
         </div>
       </div>
     </section>

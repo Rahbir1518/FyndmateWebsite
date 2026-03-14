@@ -138,9 +138,9 @@ const Footer = () => {
               &copy; 2026 Troupe. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a href="#" className="text-gray-500 hover:text-white text-sm transition-colors">
+              <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">
                 Privacy Policy
-              </a>
+              </Link>
               <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">
                 Terms of Service
               </Link>

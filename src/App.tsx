@@ -10,6 +10,7 @@ import Testimonials from './sections/Testimonials';
 import CTA from './sections/CTA';
 import Footer from './sections/Footer';
 import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -55,6 +56,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
