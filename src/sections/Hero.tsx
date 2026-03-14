@@ -184,15 +184,15 @@ const Hero = () => {
             >
               <span className="word inline-block">Find</span>{' '}
               <span className="word inline-block">People</span>{' '}
-              <span className="word inline-block">To</span>{' '}
-              <span className="word inline-block text-gradient">Collaborate With</span>
+              <span className="word inline-block">to</span>{' '}
+              <span className="word inline-block text-gradient">Team Up With</span>
             </h1>
 
             <p
               ref={subheadlineRef}
               className="text-lg sm:text-xl text-brand-muted font-medium mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Swipe through curated tech talent. Match with developers, designers, and dreamers ready to build the future.
+              Match with curated tech talent. Find developers, designers and dreamers ready to build the future.
             </p>
 
             <button
