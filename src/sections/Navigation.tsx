@@ -63,7 +63,7 @@ const Navigation = () => {
           to="/"
           className="text-xl font-extrabold flex items-center tracking-tight hover:text-brand-purple transition-colors"
         > 
-          <img src="/assets/logo_noBg.png" alt="Troupe Logo" className="w-10 h-10 mr-2" />
+          <img src="/logo_noBg.png" alt="Troupe Logo" className="w-10 h-10 mr-2" />
           Troupe
           <span className="inline-block w-2 h-2 bg-brand-pink rounded-full ml-1 align-top"></span>
         </Link>
