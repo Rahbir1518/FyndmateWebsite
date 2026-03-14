@@ -200,7 +200,7 @@ const Hero = () => {
               onClick={() => scrollToSection('cta')}
               className="neo-btn-primary px-8 py-4 rounded-full text-lg"
             >
-              Start Swiping
+              Start Trouping
             </button>
 
             {/* Stats */}
