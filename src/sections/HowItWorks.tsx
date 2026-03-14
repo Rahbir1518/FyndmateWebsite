@@ -14,8 +14,8 @@ const steps = [
   },
   {
     number: '02',
-    title: 'Swipe & Match',
-    description: 'Browse through curated profiles of developers, designers, and builders. Swipe right to connect.',
+    title: 'Request & Match',
+    description: 'Browse through curated profiles of developers, designers, and builders. Send request to connect.',
     image: '/step-2.jpg',
     color: '#8B5CF6',
   },
