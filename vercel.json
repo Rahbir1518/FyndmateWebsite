@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/legal/privacy-policy",
+      "destination": "/legal/privacy-policy.html"
+    },
+    {
+      "source": "/legal/terms-of-service",
+      "destination": "/legal/terms-of-service.html"
+    },
+    {
+      "source": "/legal/account-deletion",
+      "destination": "/legal/account-deletion.html"
+    }
+  ]
+}

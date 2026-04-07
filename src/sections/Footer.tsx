@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -138,12 +137,15 @@ const Footer = () => {
               &copy; 2026 Troupe. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">
+              <a href="/legal/privacy-policy" className="text-gray-500 hover:text-white text-sm transition-colors">
                 Privacy Policy
-              </Link>
-              <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">
+              </a>
+              <a href="/legal/terms-of-service" className="text-gray-500 hover:text-white text-sm transition-colors">
                 Terms of Service
-              </Link>
+              </a>
+              <a href="/legal/account-deletion" className="text-gray-500 hover:text-white text-sm transition-colors">
+                Account Deletion
+              </a>
             </div>
           </div>
         </div>
